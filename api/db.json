@@ -1,0 +1,48 @@
+{
+  "streams": [
+    {
+      "title": "My Stream",
+      "description": "This is a great stream!",
+      "id": 1
+    },
+    {
+      "title": "Second test stream",
+      "description": "A description that I made up",
+      "id": 2
+    },
+    {
+      "title": "2nd test stream",
+      "description": "custom description",
+      "id": 3
+    },
+    {
+      "title": "another",
+      "description": "custom description",
+      "id": 4
+    },
+    {
+      "title": "my new stream",
+      "description": "this stream was created by Steven",
+      "userId": "107107700108428863073",
+      "id": 5
+    },
+    {
+      "title": "my new stream",
+      "description": "this stream was created by Steven",
+      "userId": "107107700108428863073",
+      "id": 6
+    },
+    {
+      "title": "Unexpected Behaviour",
+      "description": "Didn't expect that!",
+      "userId": "107107700108428863073",
+      "id": 7
+    },
+    {
+      "title": "Programmatic Navigation",
+      "description": "You should not see this on the form page!!",
+      "userId": "107107700108428863073",
+      "id": 8
+    }
+  ]
+}
