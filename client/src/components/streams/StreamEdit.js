@@ -28,5 +28,4 @@ class StreamEdit extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return { stream: state.streams[ownProps.match.params.id] };
 };
-//add random comment 2
 export default connect(mapStateToProps, { fetchStream })(StreamEdit);
