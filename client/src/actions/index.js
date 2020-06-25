@@ -1,3 +1,5 @@
+// the lectures put a darn single line in a different folder called apis because he did it before in another project but seriously? Don't bother.
+
 import streams from '../apis/streams';
 import history from '../history';
 
