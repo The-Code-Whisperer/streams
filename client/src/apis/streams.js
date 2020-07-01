@@ -1,5 +1,1 @@
-import axios from 'axios';
-
-export default axios.create({
-  baseURL: 'http://localhost:3001'
-})
+// this page was rendered obsolete by transferring the code onto the page it was used at ../actions/index.js

@@ -7,10 +7,14 @@ import { reducer as formReducer } from 'redux-form'; // see the documentation an
 
 
 import authReducer from './authReducer'; // get these reducers from other pages where they have been pre-written. Could have written them here but convention is to put them in separate pages.
+// now that we finished writing the streamReducer for all stream api based actions we import it here for final combination
 import streamReducer from './streamReducer';
 
+
+// what is importing this export?
 export default combineReducers({ 
   auth: authReducer, // name them so we don't say "what in the world is this reducer?" So for example this one comes from authReducer.js
   form: formReducer,
+  // now that streamReducer is hooked up, we give it a test. To test, wire up an action creator to our streamList component. As in, use LIST_STREAMS from our ../actions/index.js file to list all the streams onto our default page. So at our streamsList.js component...
   streams: streamReducer
 });
