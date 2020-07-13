@@ -1,11 +1,14 @@
 import React from 'react';
+// need this because we are connecting the action and component together at the bottom. We don't put the reducer in because the action will call the reducer as it's already wired. It's centrally wired at ../../index.js
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchStreams } from '../../actions';
+// need the action
+import { listStreams } from '../../actions';
 
 class StreamList extends React.Component {
   componentDidMount() {
-    this.props.fetchStreams();
+    // call the action creator as soon as the page loads
+    this.props.listStreams();
   }
 
   renderAdmin(stream) {
@@ -65,4 +68,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, { fetchStreams })(StreamList);
+export default connect(mapStateToProps, { listStreams })(StreamList);

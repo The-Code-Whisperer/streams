@@ -3,7 +3,7 @@ import React from 'react';
 
 // how to get our list of streams into the component? get it from the redux store using the connect function.
 import { connect } from 'react-redux';
-import { fetchStream, editStream } from '../../actions';
+import { getStream, updateStream } from '../../actions';
 import StreamForm from './StreamForm';
 
 class StreamEdit extends React.Component {
@@ -34,4 +34,4 @@ class StreamEdit extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return { stream: state.streams[ownProps.match.params.id] };
 };
-export default connect(mapStateToProps, { fetchStream, editStream })(StreamEdit);
+export default connect(mapStateToProps, { getStream, updateStream })(StreamEdit);
