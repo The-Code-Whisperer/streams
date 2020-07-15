@@ -16,4 +16,6 @@ why is it called history? Guess it pulls it from history idk lol.
 
 342. Actually call fetchStream (faster and more precise), no need to call fetchStreams. Call it in the cDM function. Pass in those props we just passed in using mapStateToProps from the url, as in this.props.match.params.id. Remember that props is used in function components whereas it's this.props in class components. Don't use function components anyway they have no real advantages IMO. Now if we want to use this.props.stream.title in the JSX, remember to account for that at first that property will be empty.
 
-343. streamedit and createstream look very similar. combine them with streamform. Put onSubmit and initialValues in there. copy all of createstream to streamform is fine, but export default the wrapped form. The connect and action need not be imported anymore. And onSubmit should not automatically call createStream action. Instead it should use props to do depending.
+343. editStream and createstream look very similar. combine them with streamform. Put onSubmit and initialValues in there. copy all of createstream to streamform is fine, but export default the wrapped form. The connect and action need not be imported anymore. And onSubmit should not automatically call createStream action. Instead it should use props to do createStream or streamEdit depending.
+
+344. refactoring. the streamform component goes inside each of createstream and editStream. 
