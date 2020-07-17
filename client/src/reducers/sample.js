@@ -1,22 +1,28 @@
 // Sample code!!
-// Array based approach
+// Array based approach, meaning the state starts as an empty array, although usually it will already be full of previously made streams
 
+// 
 const streamReducer = (state=[], action) => {
   switch (action.type) {
+    // if the action type sent by the action creator is EDIT_STREAM, the idea would be to return the state the same except for the one stream that was edited.
     case EDIT_STREAM:
+      // return the result of this mapping function, where I go through each stream in the current state.
       return state.map(stream => {
+        // if the currently mapped stream has an id similar to the one inside the action.payload stream data, return action.payload stream (by itself). This is the edited stream.
         if (stream.id === action.payload.id) {
           return action.payload;
         } else {
+          // if the id's do not match, then return the current stream by itself, untouched.
           return stream;
         }
+        // this loop continues for each stream, returning a stream every time.
       });
       default:
         return state;
   }
 };
 
-// Object-based approach
+// Object-based approach, meaning the state is initialized as an empty object
 const streamReducer = (state={}, action) => {
   switch (action.type) {
     case EDIT_STREAM:

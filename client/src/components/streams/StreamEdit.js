@@ -3,7 +3,7 @@ import React from 'react';
 
 // how to get our list of streams into the component? get it from the redux store using the connect function.
 import { connect } from 'react-redux';
-import { getStream, updateStream } from '../../actions';
+import { fetchStream, editStream } from '../../actions';
 import StreamForm from './StreamForm';
 
 class StreamEdit extends React.Component {
@@ -12,6 +12,7 @@ class StreamEdit extends React.Component {
   }
 
   onSubmit = (formValues) => {
+    console.log(this.props.match.params.id)
     this.props.editStream(this.props.match.params.id, formValues);
   };
 
@@ -23,7 +24,7 @@ class StreamEdit extends React.Component {
       <div>
         <h3>Edit a Stream</h3>
         <StreamForm
-          initialValues={_.pick(this.props.stream, 'title', 'description')}
+          initialValues={_.pick(this.props.stream, 'title', 'description')} // is an object with a title and description property which matches the names we have the fields in streamForm so we're good.
           onSubmit={this.onSubmit}
         />
       </div>
@@ -34,4 +35,4 @@ class StreamEdit extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return { stream: state.streams[ownProps.match.params.id] };
 };
-export default connect(mapStateToProps, { getStream, updateStream })(StreamEdit);
+export default connect(mapStateToProps, { fetchStream, editStream })(StreamEdit);

@@ -22,8 +22,7 @@
     },
     {
       "title": "my new stream",
-      "description": "this stream was created by Steven",
-      "userId": "107107700108428863073",
+      "description": "this stream was created by Stevenasdfasdf",
       "id": 5
     },
     {
@@ -44,20 +43,17 @@
     },
     {
       "title": "Me Streaming Component Reuse!",
-      "description": "Watch me refactor some components. \":O",
-      "userId": "107107700108428863073",
+      "description": "Watch me refactor some components. \":Oasdf",
       "id": 9
-    },
-    {
-      "title": "refreshingmemory",
-      "description": "hey",
-      "userId": "107107700108428863073",
-      "id": 10
     },
     {
       "title": "test3",
       "description": "test3",
-      "userId": "107107700108428863073",
+      "id": 10
+    },
+    {
+      "title": "test4",
+      "description": "test4",
       "id": 11
     }
   ]

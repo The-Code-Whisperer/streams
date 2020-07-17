@@ -3,19 +3,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 // need the action
-import { listStreams } from '../../actions';
+import { fetchStreams } from '../../actions';
 
 class StreamList extends React.Component {
   componentDidMount() {
     // call the action creator as soon as the page loads
-    this.props.listStreams();
+    this.props.fetchStreams();
   }
 
   renderAdmin(stream) {
     if (stream.userId === this.props.currentUserId) {
       return (
         <div className="right floated content">
-          <Link to={`/streams/edit/${stream.id}`} className="ui button primary">Edit</Link>
+          <Link to={`/streams/edit/${stream.id}`} className="ui button primary">Edit</Link> {/* so this button will navigate the user to a URL, but how does the editStream component get activated? Using route from App.js which is basically the main component of the website, other than index.js in the folder above it which is even higher. */}
           <Link to={`/streams/delete/${stream.id}`} className="ui button negative">Delete</Link>
         </div>
       );
@@ -68,4 +68,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, { listStreams })(StreamList);
+export default connect(mapStateToProps, { fetchStreams })(StreamList);

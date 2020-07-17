@@ -6,7 +6,7 @@ why is it called history? Guess it pulls it from history idk lol.
 
 337. url-based selection uses react-router-dom. Before we had a songSelectionReducer. But now we can put the id of the stream directly into the URL, probably easier. Actually it's also better, it has more features! 
 
-338. clicking edit button should go to streams/edit/id_of_stream. use url-based selection. Tweak the Route in the App.js file to need :id (id can be anything but doing this for variable naming) in url. Change the edit button instead of a button tag to a Link tag so it goes to a different page with ES2015 backtick variable syntax. stream.id is the `${variable}` portion.
+338. clicking edit button should go to streams/edit/id_of_stream. use url-based selection. Tweak the Route in the App.js file to need :id (id can be anything but doing this for variable naming) in url (only works for this particular Route url in this library browser-router-dom i think.). Change the edit button instead of a button tag to a Link tag so it goes to a different page with ES2015 backtick variable syntax. stream.id is the `${variable}` portion.
 
 339. get the stream id out of the url to process. If I console.log(this.props) in the streamEdit component I can find it in this.props.match.params.id. putting exact requires the exact path. Not putting it allows parent paths to work.
 
@@ -19,3 +19,8 @@ why is it called history? Guess it pulls it from history idk lol.
 343. editStream and createstream look very similar. combine them with streamform. Put onSubmit and initialValues in there. copy all of createstream to streamform is fine, but export default the wrapped form. The connect and action need not be imported anymore. And onSubmit should not automatically call createStream action. Instead it should use props to do createStream or streamEdit depending.
 
 344. refactoring. the streamform component goes inside each of createstream and editStream. 
+
+345. put in an initialValues property in streamForm. Could do something like initialValues={{ title: 'EDIT ME', description: 'CHANGE ME'}} which will pass an object hard coding those values as a dictionary. Those keys have to match the names we gave the fields in StreamForm.
+
+
+ 346. formValues typically is reserved for values from the form that CHANGED. But it currently puts in all values, including the id of the user, and the id of the stream. (though I'm still not sure where those came from, there's the id of the user in match.params.id in the props in the url, but the user id is gonna be from googleauth and I haven't seen that around...) Oh, it's because initialValues was given this.props.stream which contains the user id and streamid. There it's part of formValues in the streamForm, even if there's no inputs for those properties. So the solution is to pass in just the title and description which are the only values to change. We could do the usual way (this.props.stream.title, etc) but instead we can use the lodash library and use its pick function.
