@@ -50,14 +50,12 @@ class StreamForm extends React.Component {
     return (
       // ui form makes this shit automatically look okay. Error, despite being pre-set css, looks pretty decent here for validation checking. Add error so display is set to show errors instead of none (set to none by default).
       <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
-        {/* Field has been imported at the top, pre-written by reduxForm. it requires the name prop, giving the name of the property this field enters to. Not a title or label on the screeen. This will be called title since it refers to the title of the stream. Field will automatically be part of the redux form system, but by itself does not make anything on the screen such as a text input appear. The only way to make anything render is to put a component prop which we have to input the desired JSX into. We can further customize this Field element by using any of the pre-set props, such as label. Now that label is a property, we can further customize it inside the renderInput component function, as Field will pass label into the component function as a property for us. Keep in mind this label won't actually show up as a label in Field otherwise! It's not a special name that Field recognizes as a label, we define it ourselves in this.renderInput! */}
         <Field name="title" component={this.renderInput} label="Enter Title " />
         <Field
           name="description"
           component={this.renderInput}
           label="Enter Description "
         />
-        {/* ui button primary comes from semantic ui. Remember, semantic.min.css has already been loaded into our html page, so it will specially understand the semantic ui library. */}
         <button className="ui button primary">Submit</button>
       </form>
     );

@@ -10,7 +10,7 @@ import StreamForm from './StreamForm'; // we outsourced all the code (in this ca
 class StreamCreate extends React.Component {
   onSubmit = (formValues) => {
     // when the button is submitted, call the createStream action creator, with the formValues inputs as the argument, which makes the action run
-    this.props.createStream(formValues);
+    this.props.createStream({...formValues, userId: this.props.userId });
   }
   render() {
     return (
@@ -22,7 +22,11 @@ class StreamCreate extends React.Component {
   }
 }
 
+function mapStateToProps(state) {
+  return { userId: state.auth.userId };
+}
+
 // as with all connect functions, place the reducer first, the action second, and the component third.
-export default connect(null, { createStream })(StreamCreate);
+export default connect(mapStateToProps, { createStream })(StreamCreate);
 
 // how the fuck is the action being sent to the reducer??? it's not being named anywhere??? The reducer is taken from, ideally, ../reducers I believe? Okay so the action has a special function called dispatch that Redux knows about and applies the action to the reducers and the store. You can see from the ../../index.js page that reducers is imported there. Actions are not but they go up a chain of pages through the component being affected.

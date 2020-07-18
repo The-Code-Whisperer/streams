@@ -38,11 +38,13 @@ class StreamList extends React.Component {
     });
 
   }
+
+  // this arbitrarily named helper function should run at the same time as cDM.
   renderCreate() {
     if (this.props.isSignedIn) {
       return (
-        <div style={{ textAlign: 'right' }}>
-          <Link to="/streams/new" className="ui button primary">
+        <div style={{ textAlign: 'right' }}> {/* put this button to the right */}
+          <Link to="/streams/new" className="ui button primary"> {/* Makes a button with a nice shape and links to the given URL */}
             Create Stream
           </Link>
         </div>
