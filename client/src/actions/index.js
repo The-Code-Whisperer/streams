@@ -38,15 +38,17 @@ export const signOut = () => {
 
 // when the user calls createStream it's going to be at the form creating a stream at localhost:3000/streams/create and clicking submit, so the input argument is formValues. This action creator has to be asynchronous, since the user does not submit the form the moment the page loads. This means that in the action creator, we have to return a function with "dispatch" as its argument, where the dispatch will act as the action creator in the sub function. Redux thunk is required to allow returning functions in action creators. Also since the entire content of the function returns another function, we can use a quick format. After making this action creator we'll go to the StreamCreate.js component and call it.
 
-// this already works, but why the fuck does it change to the one below it which is the live version? we shall see!
-export const createStream = (formValues) => async (dispatch) => {
+// dispatch and getState are returned from the outer function.
+export const createStream = (formValues) => async (dispatch, getState) => {
   // make a request to the streams endpoint at localhost:3001, inputting formValues, and the currently signed in userId. This will create a stream because the restful convention on our API is that a post request to streams is to create a stream. How does the API know that though?
   // let's create a saved handler of the stream we just created. The response variable in this case will just contain an object with the formValues.
-  console.log(formValues);
-  const response = await streams.post('/streams', formValues);
+  const { userId } = getState().auth;
+  const response = await streams.post('/streams', { ...formValues, userId });
   // as we've seen before, when using redux thunk and returning a function within a function so the action creator can be asynchronous, the inner function sends the final action creator using the dispatch function. So what's the purpose of the action creator dispatched when we already created the stream in the database? Simple, this dispatch will be used for modifying the page, using the response variable we attained as the result of the request. Also data is the only part of response we are interested in (can console.log it to see), so might as well specify right here.
   dispatch({ type: CREATE_STREAM, payload: response.data })
+  history.push('/');
 }
+
 // task: make all the action creators. createStream has already been done, but we also need to list all records, get one particular record, update a record, and delete a record.
 // if no argument info needed, just put empty brackets for the argument.
 export const fetchStreams = () => async (dispatch) => {
@@ -60,9 +62,11 @@ export const fetchStream = (id) => async (dispatch) => {
   dispatch({ type: FETCH_STREAM, payload: response.data });
 }
 
-export const editStream = (id, formValues, userId) => async (dispatch) => {
-  const response = await streams.put(`/streams/${id}`, {...formValues, userId});
+export const editStream = (id, formValues) => async (dispatch, getState) => {
+  // instead of using a put request which replaces the whole stream data object, use a patch request which only modifies the gives values.
+  const response = await streams.patch(`/streams/${id}`, formValues);
   dispatch({ type: EDIT_STREAM, payload: response.data });
+  history.push('/');
 }
 
 // this was previously named deleteRecord. Now that this variable name has been changed, what might need to be changed in other pages? This is an action. A stream component would be calling this action creator. The reducer will probably not need it, but let's see anyway.

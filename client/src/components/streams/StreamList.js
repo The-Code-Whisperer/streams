@@ -20,8 +20,8 @@ class StreamList extends React.Component {
         </div>
       );
     }
-
   }
+  
   renderList() {
     return this.props.streams.map(stream => {
       return (

@@ -13,7 +13,7 @@ class StreamEdit extends React.Component {
 
   onSubmit = (formValues) => {
     console.log(this.props.match.params.id)
-    this.props.editStream(this.props.match.params.id, formValues, this.props.userId);
+    this.props.editStream(this.props.match.params.id, formValues);
   };
 
   render() {
@@ -33,7 +33,8 @@ class StreamEdit extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { stream: state.streams[ownProps.match.params.id], userId: state.auth.userId };
+  return { stream: state.streams[ownProps.match.params.id]};
 };
+
 // where the fuck is this exporting to ._.
 export default connect(mapStateToProps, { fetchStream, editStream })(StreamEdit);
