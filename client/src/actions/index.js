@@ -73,6 +73,7 @@ export const editStream = (id, formValues) => async (dispatch, getState) => {
 export const deleteStream = (id) => async (dispatch) => {
   await streams.delete(`/streams/${id}`); // this is how you do a delete request in axios
   dispatch({ type: DELETE_STREAM, payload: id });
+  history.push('/');
 }
 
 

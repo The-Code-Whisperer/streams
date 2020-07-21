@@ -1,5 +1,5 @@
 import React from 'react'; // this is so this function is known to React
-import { Router, Route } from 'react-router-dom'; // this we'll know just from memory that it allows routing based on a browser address, Router must wrap all Route attributes
+import { Router, Route, Switch } from 'react-router-dom'; // this we'll know just from memory that it allows routing based on a browser address, Router must wrap all Route attributes. Switch allows preciser Routing pathing, as in it won't display the same Route twice.
 import StreamCreate from './streams/StreamCreate';
 import StreamEdit from './streams/StreamEdit';
 import StreamDelete from './streams/StreamDelete';
@@ -16,11 +16,14 @@ const App = () => {
       <Router history={history}>
         <div>
           <Header />
-          <Route path="/" exact component={StreamList} /> {/* exact specifies a requirement for the exact specified URL rather than extensions being included. component specifies what to show upon requesting that route. */}
-          <Route path="/streams/new" exact component={StreamCreate} />
-          <Route path="/streams/edit/:id" exact component={StreamEdit} />
-          <Route path="/streams/delete/:id" exact component={StreamDelete} />
-          <Route path="/streams/show" exact component={StreamShow} />
+          <Switch>
+            <Route path="/" exact component={StreamList} /> {/* exact specifies a requirement for the exact specified URL rather than extensions being included. component specifies what to show upon requesting that route. */}
+            <Route path="/streams/new" exact component={StreamCreate} />
+            <Route path="/streams/edit/:id" exact component={StreamEdit} />
+            <Route path="/streams/delete/:id" exact component={StreamDelete} />
+            <Route path="/streams/:id" exact component={StreamShow} />
+          </Switch>
+
         </div>
       </Router>
     </div >
